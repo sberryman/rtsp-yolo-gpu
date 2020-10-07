@@ -184,6 +184,9 @@ cv::Mat draw_detections(cv::Mat& h_frame, json& detections, bool isGpuMat, std::
 
   for (int i = 0; i < detectionCount; ++i) {
     // std::cerr << "  - Class: " << detections["detections"][i]["class"] << " - Prob: " << detections["detections"][i]["prob"] << '\n';
+    if (detections["detections"][i]["class"] != "person") {
+      continue;
+    }
 
     // {
     //   "class": "person",
@@ -199,12 +202,12 @@ cv::Mat draw_detections(cv::Mat& h_frame, json& detections, bool isGpuMat, std::
     if (detections["detections"][i]["class"] == "person") {
       boxColor = cv::Scalar(255, 0, 0, 155);
     }
-    if (detections["detections"][i]["class"] == "dog") {
-      boxColor = cv::Scalar(62, 128, 43, 155);
-    }
-    if (detections["detections"][i]["class"] == "bicycle") {
-      boxColor = cv::Scalar(57, 68, 170, 155);
-    }
+    // if (detections["detections"][i]["class"] == "dog") {
+    //   boxColor = cv::Scalar(62, 128, 43, 155);
+    // }
+    // if (detections["detections"][i]["class"] == "bicycle") {
+    //   boxColor = cv::Scalar(57, 68, 170, 155);
+    // }
 
 
     // time to draw!
